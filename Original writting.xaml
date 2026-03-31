@@ -1,0 +1,179 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="original_writting" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sg="clr-namespace:System.Globalization;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="arg_str_office_number" Type="InArgument(x:String)" />
+    <x:Property Name="arg_int_count2" Type="InArgument(x:Int32)" />
+    <x:Property Name="arg_str_form_servicemonth" Type="InArgument(x:String)" />
+    <x:Property Name="arg_str_form_number" Type="InArgument(x:String)" />
+    <x:Property Name="arg_str_form_servicetotal" Type="InArgument(x:String)" />
+    <x:Property Name="arg_str_staffname" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="カレンダー取得" Name="arg_cul_info" Type="InArgument(sg:CultureInfo)" />
+    <x:Property sap2010:Annotation.AnnotationText="日本のカレンダー" Name="arg_cal_era_ja" Type="InArgument(sg:JapaneseCalendar)" />
+    <x:Property sap2010:Annotation.AnnotationText="時代" Name="arg_str_era" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="辞書機能" Name="arg_str_dictionary" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="arg_str_stname" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>855,645</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="原本に書き込み" sap:VirtualizedContainerService.HintSize="434,175" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_11" Visible="False" WorkbookPath="[arg_str_dictionary(&quot;一次データ格納先&quot;).ToString]">
+    <ui:ExcelApplicationScope.Body>
+      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="原本へ書き込み" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_44">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="メッセージをログ" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;書き込み開始&quot;]" />
+          <ui:ExcelWriteCell Cell="[&quot;B&quot;+arg_int_count2.ToString]" DisplayName="書き込み" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_20" Text="[arg_str_form_servicemonth]">
+            <ui:ExcelWriteCell.SheetName>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:ExcelWriteCell.SheetName>
+          </ui:ExcelWriteCell>
+          <If Condition="[arg_str_staffname &lt;&gt;&quot;&quot;]" DisplayName="原本の担当者が空欄ではない場合" sap:VirtualizedContainerService.HintSize="547,433" sap2010:WorkflowViewState.IdRef="If_8">
+            <If.Else>
+              <Sequence DisplayName="担当者名の書き込み" sap:VirtualizedContainerService.HintSize="376,285" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ExcelWriteCell Cell="H9" DisplayName="担当者" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_28" Text="[arg_str_dictionary(&quot;担当者&quot;).ToString]">
+                  <ui:ExcelWriteCell.SheetName>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:ExcelWriteCell.SheetName>
+                </ui:ExcelWriteCell>
+                <Sequence DisplayName="西暦→和暦へ" sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Comment DisplayName="コメント" sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_7" Text="引数に西暦から和暦の情報を持たせたい" />
+                  <Assign DisplayName="日本の値取得" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sg:CultureInfo">[arg_cul_info]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sg:CultureInfo">[New System.Globalization.CultureInfo("ja-jp")]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <Assign DisplayName="日本のカレンダー取得" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sg:JapaneseCalendar">[arg_cal_era_ja]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sg:JapaneseCalendar">[New System.Globalization.JapaneseCalendar]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <Assign DisplayName="カレンダー" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sg:Calendar">[arg_cul_info.DateTimeFormat.Calendar]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sg:Calendar">[arg_cal_era_ja]</InArgument>
+                    </Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Assign>
+                  <Assign DisplayName="現在の年号" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[arg_str_era]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("ggyy年",arg_cul_info)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:LogMessage DisplayName="メッセージをログ" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;原本へ書き込み終了&quot;]" />
+        </Sequence>
+      </ActivityAction>
+    </ui:ExcelApplicationScope.Body>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+  </ui:ExcelApplicationScope>
+</Activity>
